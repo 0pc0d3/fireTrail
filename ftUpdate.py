@@ -100,15 +100,16 @@ resETPage = requests.get(urlETSummary)
 print "***Checking Updates from: " + urlETSummary
 print "\n"
 
-#Grep to latest update page
-patETupdate = re.compile('(:?[0-9]{4}\-[0-9]{2}\-[0-9]{2})')
-matchETRules = patETupdate.findall(resETPage.text)
-strETRulesPage = ''.join(matchETRules)
-strETRulesPage =  strETRulesPage[:10]
-print "Regex match: " + strETRulesPage
+#Grep to latest update page !!! REMOVED: Proofpoint changed their page naming 
+#patETupdate = re.compile('(:?[0-9]{4}\-[0-9]{2}\-[0-9]{2})')
+#matchETRules = patETupdate.findall(resETPage.text)
+#strETRulesPage = ''.join(matchETRules)
+#strETRulesPage =  strETRulesPage[:10]
+#print "Regex match: " + strETRulesPage
 
 #Go to ET Rules page
-urlETRules = "http://www.proofpoint.com/us/daily-ruleset-update-summary-" + strETRulesPage
+date = time.strftime("%Y%m%d")
+urlETRules = "http://www.proofpoint.com/us/daily-ruleset-update-summary-" + date
 resETRules = requests.get(urlETRules)
 
 print "***Pulling ET updates from: " + urlETRules
